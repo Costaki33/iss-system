@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 import json
 import xmltodict
 import logging
@@ -18,14 +18,39 @@ import socket
 app = Flask(__name__)
 
 @app.route('/download_data', methods= ['POST'])
-def download_data(); 
+def download_data(): 
     global sighting_data
-    global positional_data
+    global position_data
 
-with open('XMLsightingData_citiesUSA10.xml', 'r') as f:
-    sighting_data = xmltodict.parse(f.read())
+    with open('XMLsightingData_citiesUSA10.xml', 'r') as f:
+        sighting_data = xmltodict.parse(f.read())
 
-with open()
+    with open('ISS.OEM_J2K_EPH.xml', 'r') as g:
+        positon_data = xmltodict.parse(g.read())
+
+    return 'Data has been downloaded \n'
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
