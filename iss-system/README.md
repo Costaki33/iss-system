@@ -145,6 +145,7 @@ The following section holds an example command followed by their resulting outpu
   }
 ]
 ```
+```
 From the sample, we see that each epoch is defined by their key: "EPOCH". We can also see the position of the ISS in X, Y and Z coordinates, as well as its velocity in X, Y, and Z directions through the X_DOT, Y_DOT, and Z_DOT, respectively.
 
 
@@ -231,224 +232,186 @@ From the sample, you can analyze the information such as the city, country, etc.
 ]
 ```
 From the example output above, we can see a list of all the countries in the dataset where the ISS was sighted, which here is the US. You can also see the number of occurances in that specific country.
-### /sightings/\<country>
+### /sightings/<country>
 **EX OUT:**
 ```
 ...
   {
-    "city": "Le_Grand", 
+    "city": "Farmville", 
     "country": "United_States", 
     "duration_minutes": "2", 
-    "enters": "18 above N", 
-    "exits": "10 above NNE", 
-    "max_elevation": "18", 
-    "region": "California", 
-    "sighting_date": "Thu Feb 24/05:01 AM", 
-    "spacecraft": "ISS", 
-    "utc_date": "Feb 24, 2022", 
-    "utc_offset": "-8.0", 
-    "utc_time": "13:01"
-  }, 
-  {
-    "city": "Le_Grand", 
-    "country": "United_States", 
-    "duration_minutes": "< 1", 
-    "enters": "9 above NNE", 
-    "exits": "10 above NNE", 
-    "max_elevation": "9", 
-    "region": "California", 
-    "sighting_date": "Fri Feb 25/04:15 AM", 
+    "enters": "11 above NW", 
+    "exits": "10 above N", 
+    "max_elevation": "11", 
+    "region": "Virginia", 
+    "sighting_date": "Fri Feb 25/05:42 AM", 
     "spacecraft": "ISS", 
     "utc_date": "Feb 25, 2022", 
-    "utc_offset": "-8.0", 
-    "utc_time": "12:15"
+    "utc_offset": "-5.0", 
+    "utc_time": "10:42"
+  }, 
+  {
+    "city": "Farmville", 
+    "country": "United_States", 
+    "duration_minutes": "< 1", 
+    "enters": "11 above N", 
+    "exits": "10 above NNE", 
+    "max_elevation": "11", 
+    "region": "Virginia", 
+    "sighting_date": "Sat Feb 25/04:46 AM", 
+    "spacecraft": "ISS", 
+    "utc_date": "Feb 26, 2022", 
+    "utc_offset": "-5.0", 
+    "utc_time": "09:56"
   }
 ]
 ```
-From the example output above, we can see all the sightings that occurred in the country provided by the user. <br >
-
-Link for you to go back to the [list of routes](#list-of-routes-for-you-to-easily-jump-to) <br >
+From the sample, we can see all the sightings that occurred in the specified country.
 
 ### /sightings/countries/regions
-**Example Command:** `curl localhost:5038/sightings/countries/regions` <br >
 
-**Example Output:**
+**EX OUT:**
 ```
 {
-  "United_States": [
-    "Alabama", 
-    "Alaska", 
-    "American_Samoa", 
-    "Arizona", 
-    "Arkansas", 
-    "California"
+  "United_States": [ 
+    "Texas", 
+    "Utah",
+    "Vermont",
+    "Virgin_Islands",
+    "Virginia"
   ]
 }
 ```
-From the example output above, we can see a key for every country where a sighting occurred. The value of that key is a list of all the regions within that country where a sighting occurred. In the case above, the only country were a sighting occurred was in the United States and the regions (states) where Alabama, Alaska, etc. <br >
+From the sample, we can see a key for every country where a sighting occurred. The value of that key is a list of all the regions within that country, which in this case is Texas, Utah, Vermont, the Virgin Islands and Virginia.
 
-Link for you to go back to the [list of routes](#list-of-routes-for-you-to-easily-jump-to) <br >
+### /sightings/<country>/region
 
-### /sightings/\<country>/regions
-**Example Command:** `curl localhost:5038/sightings/united_states/regions` <br >
-
-**Example Output:**
+**EX OUT:**
 ```
 {
   "United_States": [
     {
-      "numsightings": 698, 
-      "region": "Alabama"
+      "numsightings": 2210, 
+      "region": "Texas"
     }, 
     {
-      "numsightings": 157, 
-      "region": "Alaska"
+      "numsightings": 566, 
+      "region": "Utah"
     }, 
     {
-      "numsightings": 6, 
-      "region": "American_Samoa"
+      "numsightings": 288, 
+      "region": "Vermont"
     }, 
     {
-      "numsightings": 443, 
-      "region": "Arizona"
+      "numsightings": 50, 
+      "region": "Virgin_Islands"
     }, 
     {
-      "numsightings": 1049, 
-      "region": "Arkansas"
-    }, 
-    {
-      "numsightings": 1258, 
-      "region": "California"
+      "numsightings": 479, 
+      "region": "Virginia"
     }
   ]
 }
 ```
-From the example output above, we can see the country the user requested as the first key in the dictionary, in this case United_States. Additionally, we can see a list of all the regions where a sighting occurred as well as the number of times a sightings occurred within that region. For example, we can see that the ISS was sighting in Arkansas 1049 times. <br >
+From the sample, we can see the country the user requested as the first key in the dictionary, in this case United_States, as well as a list of all the regions where a sighting occurred as well as the number of times a sighting occured. 
 
-Link for you to go back to the [list of routes](#list-of-routes-for-you-to-easily-jump-to) <br >
+### /sightings/region-<region>
 
-### /sightings/region-\<region>
-**Example Command:** `curl localhost:5038/sightings/region-american_samoa` <br >
-
-**Example Output:**
+**EX OUT:**
 ```
 ...
   {
-    "city": "National_Park_of_American_Samoa", 
+    "city": "Farmville", 
     "country": "United_States", 
-    "duration_minutes": "6", 
-    "enters": "10 above WSW", 
+    "duration_minutes": "2", 
+    "enters": "11 above NW", 
     "exits": "10 above N", 
-    "max_elevation": "27", 
-    "region": "American_Samoa", 
-    "sighting_date": "Sun Feb 13/05:39 AM", 
+    "max_elevation": "11", 
+    "region": "Virginia", 
+    "sighting_date": "Fri Feb 25/05:42 AM", 
     "spacecraft": "ISS", 
-    "utc_date": "Feb 13, 2022", 
-    "utc_offset": "-11.0", 
-    "utc_time": "16:39"
-  }, 
-  {
-    "city": "National_Park_of_American_Samoa", 
-    "country": "United_States", 
-    "duration_minutes": "3", 
-    "enters": "48 above N", 
-    "exits": "10 above NNE", 
-    "max_elevation": "48", 
-    "region": "American_Samoa", 
-    "sighting_date": "Mon Feb 14/04:55 AM", 
-    "spacecraft": "ISS", 
-    "utc_date": "Feb 14, 2022", 
-    "utc_offset": "-11.0", 
-    "utc_time": "15:55"
+    "utc_date": "Feb 25, 2022", 
+    "utc_offset": "-5.0", 
+    "utc_time": "10:42"
   }
 ]
 ```
-From the example output above, we can see a list of all the sightings that occurred within the American Samoa region. <br >
+From the sample, we can see a list of all the sightings that occurred in Virgin. 
+### /sightings/<country>-<region>-cities
 
-Link for you to go back to the [list of routes](#list-of-routes-for-you-to-easily-jump-to) <br >
-
-### /sightings/\<country>-\<region>-cities
-**Example Command:** `curl localhost:5038/sightings/united_states-alaska-cities` <br >
-
-**Example Output:**
+**EX OUT:**
 ```
 {
   "United_States": {
     "citiesinregion": [
-      "Alagnak_National_Wild_and_Scenic_River", 
-      "Anchorage", 
-      "Aniakchak_National_Monument", 
-      "Aniakchak_National_Preserve", 
+      "Buck_Island_Reef_National_Monument", 
+      "Charlotte_Amalie", 
+      "Christiansted_National_Historic_Site", 
+      "Saint_Croix", 
       ...
-      "Wrangell_St_Elias_National_Preserve", 
-      "Wrangell_St_Elias_Park_and_Wilderness", 
-      "Wrangell_St_Elias_Preserve_and_Wilderness", 
-      "Yakutat"
+      "Saint_Thomas",
+      ... 
     ], 
-    "region": "Alaska"
+    "region": "Virgin_Islands"
   }
 }
 ```
-From the example output above, we can see a list of all the cities within the requested region and country where the ISS was sighted. For example, we can see that the ISS was sighted in Anchorage, Alaska. <br >
+From the sample, we can see a list of all the cities within the requested region and country where the ISS was found.
 
-Link for you to go back to the [list of routes](#list-of-routes-for-you-to-easily-jump-to) <br >
+### /sightings/city-<city>
 
-### /sightings/city-\<city>
-**Example Command:** `curl localhost:5038/sightings/city-arkansas_city` <br >
-
-**Example Output:**
+**EX OUT:**
 ```
 ...
-    {
-      "city": "Arkansas_City", 
-      "country": "United_States", 
-      "duration_minutes": "2", 
-      "enters": "19 above NNW", 
-      "exits": "10 above NNE", 
-      "max_elevation": "19", 
-      "region": "Arkansas", 
-      "sighting_date": "Tue Feb 22/05:28 AM", 
-      "spacecraft": "ISS", 
-      "utc_date": "Feb 22, 2022", 
-      "utc_offset": "-6.0", 
-      "utc_time": "11:28"
-    }, 
-    {
-      "city": "Arkansas_City", 
-      "country": "United_States", 
-      "duration_minutes": "< 1", 
-      "enters": "12 above NNE", 
-      "exits": "10 above NNE", 
-      "max_elevation": "12", 
-      "region": "Arkansas", 
-      "sighting_date": "Wed Feb 23/04:42 AM", 
-      "spacecraft": "ISS", 
-      "utc_date": "Feb 23, 2022", 
-      "utc_offset": "-6.0", 
-      "utc_time": "10:42"
-    }
-  ]
+{
+    "city": "Farmville", 
+    "country": "United_States", 
+    "duration_minutes": "2", 
+    "enters": "11 above NW", 
+    "exits": "10 above N", 
+    "max_elevation": "11", 
+    "region": "Virginia", 
+    "sighting_date": "Fri Feb 25/05:42 AM", 
+    "spacecraft": "ISS", 
+    "utc_date": "Feb 25, 2022", 
+    "utc_offset": "-5.0", 
+    "utc_time": "10:42"
+  }, 
+  {
+    "city": "Farmville", 
+    "country": "United_States", 
+    "duration_minutes": "< 1", 
+    "enters": "11 above N", 
+    "exits": "10 above NNE", 
+    "max_elevation": "11", 
+    "region": "Virginia", 
+    "sighting_date": "Sat Feb 25/04:46 AM", 
+    "spacecraft": "ISS", 
+    "utc_date": "Feb 26, 2022", 
+    "utc_offset": "-5.0", 
+    "utc_time": "09:56"
+  }
+]
 }
 ```
-From the example output above, we can see all the sightings of the ISS that occurred in Arkansas City. <br >
+From the examle, we can see all the sightings of the ISS that occurred in Virginia. 
 
-Link for you to go back to the [list of routes](#list-of-routes-for-you-to-easily-jump-to) <br >
 
 ## File Descriptions
 
 ### Scripts
-1. `app.py`
+1. `iss_system_app.py`
     - Main application script 
-    - Contains POST endpoint to load the data into memory in order to query the data
-    - Contains all the GET routes the user can use to query data
-3. `test_app.py`
-    - Tests all routes in the previous script for error handling
+    - Contains POST functionality to load the data into local memory in order to request the data the user wants
+    - Contains all the GET routes the user can use to call the data
+3. `pytest-iss-app.py`
+    - Script tests all routes in the previous script for error handling through pytest
 
 ### Data Files
 1. `ISS.OEM_J2K_EPH.xml`
     - Contains the specific, time, position, and velocity data for the ISS
-2. `XMLsightingData_citiesUSA01.xml`
-    - Contains the sightings of the ISS within the United States
-    - Contains the specific time, country (United States), region (state), and city the sighting took place
+2. `XMLsightingData_citiesUSA10.xml`
+    - Contains the sightings of the ISS within the United States (version 10)
+    - Contains the specific country, region, city, and time the specific sighting occurred
 
 The ISS data above was taken from NASA's official website found [here](https://data.nasa.gov/Space-Science/ISS_COORDS_2022-02-13/r6u8-bhhq).
