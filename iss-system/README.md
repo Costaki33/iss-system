@@ -56,8 +56,9 @@ To build your own docker image, you need to download the necessary files.
     GUIDE: How to Interact with this application
     To use this application, you first need to download the data that this system supports. 
     Use the following command: 
-        curl localhost:<your port number>/download -X POST\n
-    ```
+        `curl localhost:<your port number>/download -X POST\n`
+   
+   ```
    After the dataset has been downloaded: you can access it through the application with the following routes:
     1.  /epochs
     2.  /epochs/<get-epoch>
