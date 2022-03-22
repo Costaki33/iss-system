@@ -16,8 +16,9 @@ The user can access specific information related to the speed and various positi
 To use the application commands below, you need to download the specified Makefile from this repository. Alternatively, you can run the `docker` commands as shown below.
 
 1. Pull the image from Docker Hub:
-    - Type `make pull` in the CMD line of your powershell or, 
-    - Type `docker pull costaki33/iss_system_get:1.0` in the CMD line2. Run the image
+    - Type `make pull` in the CMD line of your powershell 
+      - OR -  
+    - Type `docker pull costaki33/iss_system_get:1.0` in the CMD line. Run the image
     - Type `make run` in the command line or  type `docker run --name "iss_system_get" -d -p 5031:5000 costaki33/iss_system_get:1.0`
 
 2. You now have the image set up and running! Check out: `GUIDE: How to Use the Application` to see how to use this application with applicable routes
