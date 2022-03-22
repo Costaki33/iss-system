@@ -395,8 +395,8 @@ From the sample, we can see a list of all the cities within the requested region
 ]
 }
 ```
-```
-From the examle, we can see all the sightings of the ISS that occurred in Virginia. 
+
+From the example, we can see all the sightings of the ISS that occurred in Virginia. 
 
 
 ## File Descriptions
