@@ -235,7 +235,7 @@ From the sample, you can analyze the information such as the city, country, etc.
 ]
 ```
 From the example output above, we can see a list of all the countries in the dataset where the ISS was sighted, which here is the US. You can also see the number of occurances in that specific country.
-### /sightings/<country>
+### /sightings/\<country>
 **EX OUT:**
 ```
 ...
