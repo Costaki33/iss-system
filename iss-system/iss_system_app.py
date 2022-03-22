@@ -29,7 +29,7 @@ def help_info():
     Use the following command: 
         curl localhost:<your port number>/download -X POST\n
     
-   Once the dataset has been downloaded: you can access it through the application with the following routes:
+   After the dataset has been downloaded: you can access it through the application with the following routes:
     1.  /epochs
     2.  /epochs/<get-epoch>
     3.  /sightings
@@ -41,7 +41,6 @@ def help_info():
     9.  /sightings/<country>-<region>-cities
     10. /sightings/city-<city> 
     11. /help\n
-
     The <fill_in> is from you to look up something specific 
  '''
 
