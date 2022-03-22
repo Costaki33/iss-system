@@ -145,7 +145,7 @@ The following section holds an example command followed by their resulting outpu
   }
 ]
 ```
-```
+
 From the sample, we see that each epoch is defined by their key: "EPOCH". We can also see the position of the ISS in X, Y and Z coordinates, as well as its velocity in X, Y, and Z directions through the X_DOT, Y_DOT, and Z_DOT, respectively.
 
 
@@ -181,6 +181,7 @@ From the sample, we see that each epoch is defined by their key: "EPOCH". We can
   }
 }
 ```
+
 From the sample, we see the specifically requested epoch is defined by the key "EPOCH". We can see the information from the /epoch call
 
 ### /sightings
