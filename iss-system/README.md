@@ -58,7 +58,7 @@ To build your own docker image, you need to download the necessary files.
     Use the following command: 
         `curl localhost:<your port number>/download -X POST\n`
    
-   ```
+   
    After the dataset has been downloaded: you can access it through the application with the following routes:
     1.  /epochs
     2.  /epochs/<get-epoch>
@@ -72,7 +72,7 @@ To build your own docker image, you need to download the necessary files.
     10. /sightings/city-<city> 
     11. /help
     The <fill_in> is from you to look up something specific 
-    ```
+    
 #### The Applicable Routes 
 
 1. `/epochs`
