@@ -33,7 +33,7 @@ def help_info():
     1.  /epochs
     2.  /epochs/<get-epoch>
     3.  /sightings
-    4.  /sightings/countries
+    4.  /sightings/total_countries
     5.  /sightings/<country>
     6.  /sightings/countries/regions
     7.  /sightings/<country>/regions
@@ -44,6 +44,12 @@ def help_info():
 
     The <fill_in> is from you to look up something specific 
  '''
+
+epoch_key = 'EPOCH'
+countries_key = 'country'
+region_key = 'region'
+city_key = 'city'
+
 
 # Downloading the data 
 
@@ -75,9 +81,9 @@ def download():
     
     try:
     
-        with open('ISS.OEM_J2K_EPH.xml', 'r') as g:
-            dataset = xmltodict.parse(g.read())
-            position_data = dataset['ndm']['oem']['segment']['stateVector'] 
+        with open('ISS.OEM_J2K_EPH.xml', 'r') as f:
+            dataset = xmltodict.parse(f.read())
+            position_data = dataset['ndm']['oem']['body']['segment']['data']['stateVector'] 
 
     except FileNotFoundError as e:
          
@@ -86,12 +92,7 @@ def download():
     
     return 'Successful! Data has been downloaded \n'
     
-#Keys
-countries_key = 'country'
-region_key = 'region'
-city_key = 'city'
-epoch_key = 'EPOCH' 
- 
+
 # Route: All Epochs in the positional data
 
 @app.route('/epochs', methods = ['GET'])
@@ -114,15 +115,15 @@ def get_epochs():
 
 # Route: All information about a specific Epoch in the positional data
 
-@app.route('/epochs/<get_epoch>', methods = ['GET'])
-def get_epoch(get_epoch: str) -> dict: 
+@app.route('/epochs/<get_epoche>', methods = ['GET'])
+def get_epoch(get_epoche: str) -> dict: 
 
     '''    
      
     This function 1) takes the user input of an epoch call from the /epochs commmands list and 2) returns the first     dictionary who's EPOCH key value matches the user input 
 
     Args: 
-        request (str) : the requested epoch string by the user
+       get_epoche (str) : the requested epoch string by the user
 
     Returns: 
         epoch (dict) : a dictionary containing all the information of the specifc epoch that was requested by the user
@@ -130,17 +131,20 @@ def get_epoch(get_epoch: str) -> dict:
     '''
     
     try: 
-        for i in position_data:
-            if i[epoch_key] == get_epoch:
+        for epoch in position_data:
+            if epoch[epoch_key] == get_epoche:
                 logging.debug('Retrieving a specific epoch requested')
                 return jsonify(epoch)
 		
-            logging.info('User requested an unknown epoch value: {requested_epoch}')
-            return f'  Requested epoch value: {requested_epoch} was not found. Try again.\n'
-    
+        logging.info('User requested an unknown epoch value: {get_epoche}')
+        return f'   Requested epoch value: {get_epoche} was not found. Try again'
+
+	
+
+
     except Exception as e:
-            logging.error(e)
-            return logging.error('Make sure to download the data. Use the curl localhost:5031/help -X POST and follow the intructions in the guide\n')
+        logging.error(e)
+        return logging.error('Make sure to download the data. Use the curl localhost:5031/help -X POST and follow the intructions in the guide\n')
 
 
 # Route: All Countries from the sighting data
@@ -164,7 +168,7 @@ def get_sightings():
 
 # Route: All Countries from the sighting data
 
-@app.route('/sightings/countries', methods = ['GET'])
+@app.route('/sightings/total_countries', methods = ['GET'])
 def get_countries():
     
    '''
@@ -176,15 +180,15 @@ def get_countries():
    try:
 
         total_countries = {}
-        sighting_in_countries = []
+        sightings_in_countries = []
 
-        for sightings in sighting_data:
+        for sighting in sighting_data:
             
-            if sightings[countries_key] in total_countries.keys():
-                total_countries[sightings[countries_key]] += 1
+            if sighting[countries_key] in total_countries.keys():
+                total_countries[sighting[countries_key]] += 1
             
             else:
-                total_countries[sightings[countries_key]] = 1
+                total_countries[sighting[countries_key]] = 1
 
         for country in total_countries.keys():
             sightings_in_countries.append({'country': country, 'numsightings': countries[country]})
@@ -209,25 +213,26 @@ def get_country(country: str):
             country (str): the specific country the user would like to request
 
         Returns:
-            country_data (list): a list of dictionaries that contains all the sightings data from that specific country
+           t_country_data (list): a list of dictionaries that contains all the sightings data from that specific country
 
     '''
- 
+
     try:
+   
+     
         country_data = []
-        for sightings in sighting_data:
-            if sightings[countries_key] == country.title():
-                country_data.append(sightings)
+        for sighting in sighting_data:
+            if sighting[countries_key] == country.title():
+                country_data.append(sighting)
         logging.debug('Get specific country queried')
-        return jsonify(country_data)
-	
+        return jsonify(country_data)	
     except Exception as e:
         logging.error(e)
         return logging.error('Make sure to download the data. Use the curl localhost:5031/help -X POST and follow the intructions in the guide')
 
 # Route: All Regions associated with a given Country in the sighting data
 
-@app.route('/sightings/countries/region', methods = ['GET'])
+@app.route('/sightings/countries/regions', methods = ['GET'])
 def get_regions() -> dict:
 
     '''
@@ -238,15 +243,15 @@ def get_regions() -> dict:
     '''
     try:
         countries_regions = {}
-        for sightings in sighting_data:
+        for sighting in sighting_data:
             
-            if sightings[countries_key] in countries_regions.keys():
-                if not (sighting[region_key] in countries_regions[sightings[countries_key]]):
+            if sighting[countries_key] in countries_regions.keys():
+                if not (sighting[region_key] in countries_regions[sighting[countries_key]]):
                     countries_regions[sighting[country_key]].append(sighting[region_key])
             else:
                 countries_regions[sighting[country_key]] = [sighting[region_key]]
         
-        logging.debug('Get the regions of all countries queried')
+        logging.debug('Retreiving regions of all countries requested')
         return jsonify(countries_regions)
     
     except Exception as e:
