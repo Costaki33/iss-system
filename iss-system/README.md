@@ -107,7 +107,7 @@ To build your own docker image, you need to download the necessary files.
 11. `/help`
     - Returns the user to the help guide 
   
-## Interpretnghe Results
+## Interpreting Results
 
 The following section holds an example command followed by their resulting output. Remember to first download the data before executing any commands: `curl localhost:5031/download -X POST`
 
