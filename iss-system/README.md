@@ -287,7 +287,7 @@ From the sample, we can see all the sightings that occurred in the specified cou
 ```
 From the sample, we can see a key for every country where a sighting occurred. The value of that key is a list of all the regions within that country, which in this case is Texas, Utah, Vermont, the Virgin Islands and Virginia.
 
-### /sightings/<country>/region
+### /sightings/\<country>/region
 
 **EX OUT:**
 ```
@@ -318,7 +318,7 @@ From the sample, we can see a key for every country where a sighting occurred. T
 ```
 From the sample, we can see the country the user requested as the first key in the dictionary, in this case United_States, as well as a list of all the regions where a sighting occurred as well as the number of times a sighting occured. 
 
-### /sightings/region-<region>
+### /sightings/region-\<region>
 
 **EX OUT:**
 ```
@@ -340,7 +340,7 @@ From the sample, we can see the country the user requested as the first key in t
 ]
 ```
 From the sample, we can see a list of all the sightings that occurred in Virgin. 
-### /sightings/<country>-<region>-cities
+### /sightings/\<country>-\<region>-cities
 
 **EX OUT:**
 ```
@@ -361,7 +361,7 @@ From the sample, we can see a list of all the sightings that occurred in Virgin.
 ```
 From the sample, we can see a list of all the cities within the requested region and country where the ISS was found.
 
-### /sightings/city-<city>
+### /sightings/city-\<city>
 
 **EX OUT:**
 ```
