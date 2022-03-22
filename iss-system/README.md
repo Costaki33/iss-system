@@ -1,15 +1,15 @@
-###International Space Station (ISS) Positional and Sighting Data Application
+##International Space Station (ISS) Positional and Sighting Data Application
 
 The purpose of this application is to provide the user with a proper medium to analyize positional and sightings data for the International Space Station.
 The user can access specific information related to the speed and various positions of the ISS at specific times throughout the country, region, or city.
 
 ## Table of Contents
 
-   #How To Download the Application
-#How to Build Your Own DockerImage
-#How to Use the Application
-#Interpreting the Results
-#Overall File Contents & Descriptions
+1. How To Download the Application
+2. How to Build Your Own DockerImage
+3. How to Use the Application
+4. Interpreting the Results
+5. Overall File Contents & Descriptions
 
 ## How to Download the Application
 
