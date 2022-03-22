@@ -120,8 +120,8 @@ The following section holds an example command followed by their resulting outpu
 ...
   {
     "EPOCH": "2022-057T12:00:00.000Z", 
-    
-      "#text": "", 
+    "X": {    
+      "#text": "-4945.2048874258298", 
       "@units": "km"
     }, 
     "X_DOT": {
