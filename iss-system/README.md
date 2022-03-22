@@ -230,7 +230,7 @@ From the sample, you can analyze the information such as the city, country, etc.
 [
   {
     "country": "United_States", 
-    "numsightings": 3611
+    "numsightings": 3593
   }
 ]
 ```
